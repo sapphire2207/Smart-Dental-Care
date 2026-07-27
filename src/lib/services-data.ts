@@ -9,10 +9,35 @@ export interface Service {
   image: string;
   isPopular?: boolean;
   overview: string;
+  quickInfo?: {
+    duration?: string;
+    painLevel?: string;
+    visits?: string;
+    recovery?: string;
+    specialist?: string;
+  };
+  whatIs?: {
+    definition?: string;
+    whyRecommended?: string;
+    whoCanBenefit?: string;
+    expectedOutcome?: string;
+  };
   symptoms: string[];
+  whenToVisit?: string[];
+  causes?: { icon: string; title: string; description: string }[];
+  treatmentOptions?: { title: string; description: string }[];
   procedure: { title: string; description: string }[];
   benefits: string[];
   aftercare: string[];
+  recoveryDetails?: {
+    immediateExpectations?: string;
+    healingTimeline?: string;
+    normalSymptoms?: string;
+    brushingInstructions?: string;
+    foodsToAvoid?: string;
+    hygieneRecommendations?: string;
+    followUpSchedule?: string;
+  };
   faqs: { question: string; answer: string }[];
 }
 

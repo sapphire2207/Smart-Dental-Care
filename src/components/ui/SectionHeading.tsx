@@ -8,6 +8,7 @@ interface SectionHeadingProps {
   title: string;
   highlightedText?: string;
   description?: string;
+  subtitle?: string;
   align?: "left" | "center" | "right";
   badgeVariant?: "blue" | "navy" | "teal";
   className?: string;
@@ -18,6 +19,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   title,
   highlightedText,
   description,
+  subtitle,
   align = "center",
   badgeVariant = "blue",
   className = "",
@@ -33,6 +35,8 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
     navy: "bg-[#162554]/5 text-[#162554] border-[#162554]/10",
     teal: "bg-[#D0E7E6]/50 text-[#162554] border-[#95CCDD]/40",
   };
+
+  const subText = description || subtitle;
 
   return (
     <motion.div
@@ -59,9 +63,9 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         )}
       </h2>
 
-      {description && (
+      {subText && (
         <p className="mt-4 text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl">
-          {description}
+          {subText}
         </p>
       )}
     </motion.div>
