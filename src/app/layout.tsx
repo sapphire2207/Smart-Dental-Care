@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingCTA } from "@/components/ui/FloatingCTA";
+import LenisProvider from "@/components/providers/LenisProvider";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import { BRAND, DOCTOR, CONTACT } from "@/lib/constants";
 
 const manrope = Manrope({
@@ -63,13 +65,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
       <body className="font-body text-[#111827] bg-[#FAFBFD] min-h-screen flex flex-col antialiased">
-        <Header />
-        <main className="flex-grow pt-24 sm:pt-28">{children}</main>
-        <Footer />
-        <FloatingCTA />
+        <LenisProvider>
+          <Header />
+          <main className="flex-grow pt-24 sm:pt-28">{children}</main>
+          <Footer />
+          <FloatingCTA />
+          <ScrollToTop />
+        </LenisProvider>
       </body>
     </html>
   );
-};
+}
