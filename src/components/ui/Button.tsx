@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -11,7 +10,7 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: "primary" | "secondary" | "outline" | "ghost" | "navy" | "white";
   size?: "sm" | "md" | "lg";
-  icon?: LucideIcon;
+  icon?: React.ReactNode | React.ComponentType<{ className?: string }>;
   iconPosition?: "left" | "right";
   fullWidth?: boolean;
   disabled?: boolean;
@@ -25,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   variant = "primary",
   size = "md",
-  icon: Icon,
+  icon,
   iconPosition = "right",
   fullWidth = false,
   disabled = false,
@@ -59,11 +58,23 @@ export const Button: React.FC<ButtonProps> = ({
   const widthStyle = fullWidth ? "w-full" : "";
   const combinedClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${widthStyle} ${className}`;
 
+  const renderIcon = (pos: "left" | "right") => {
+    if (!icon || iconPosition !== pos) return null;
+    if (React.isValidElement(icon)) {
+      return icon;
+    }
+    if (typeof icon === "function" || typeof icon === "object") {
+      const IconComp = icon as React.ComponentType<{ className?: string }>;
+      return <IconComp className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />;
+    }
+    return null;
+  };
+
   const content = (
     <>
-      {Icon && iconPosition === "left" && <Icon className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />}
+      {renderIcon("left")}
       <span>{children}</span>
-      {Icon && iconPosition === "right" && <Icon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />}
+      {renderIcon("right")}
     </>
   );
 
