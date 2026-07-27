@@ -57,8 +57,17 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative">
             <Card padding="none" className="overflow-hidden border-4 border-white shadow-xl">
               <div className="relative aspect-[4/5] bg-gradient-to-tr from-[#162554] to-[#4F7DF8] flex flex-col items-center justify-center p-8 text-white text-center">
-                <div className="w-32 h-32 rounded-full bg-white text-[#4F7DF8] flex items-center justify-center shadow-lg mb-6">
-                  <Stethoscope className="w-16 h-16" />
+                <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-white p-1 shadow-2xl mb-5 relative overflow-hidden shrink-0 border-4 border-white/80 transition-transform duration-300">
+                  <div className="w-full h-full rounded-full overflow-hidden relative bg-[#EEF5FF]">
+                    <Image
+                      src={DOCTOR.image}
+                      alt={DOCTOR.name}
+                      fill
+                      priority
+                      sizes="200px"
+                      className="object-cover object-top"
+                    />
+                  </div>
                 </div>
                 <h3 className="text-3xl font-extrabold">{DOCTOR.name}</h3>
                 <p className="text-[#95CCDD] font-semibold mt-1 text-base">{DOCTOR.title}</p>

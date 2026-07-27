@@ -124,8 +124,17 @@ export default function HomePage() {
                 {/* Main Doctor Image Container */}
                 <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-[32px] overflow-hidden bg-gradient-to-tr from-[#162554] to-[#4F7DF8] shadow-[0_20px_50px_rgba(22,37,84,0.15)] border-4 border-white">
                   <div className="absolute inset-0 bg-[#EEF5FF] flex flex-col items-center justify-center p-6 text-center">
-                    <div className="w-28 h-28 rounded-full bg-white shadow-md flex items-center justify-center text-[#4F7DF8] mb-4">
-                      <Stethoscope className="w-14 h-14" />
+                    <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-white p-1 shadow-lg relative overflow-hidden mb-4 border-2 border-[#4F7DF8]/30">
+                      <div className="w-full h-full rounded-full overflow-hidden relative bg-white">
+                        <Image
+                          src={DOCTOR.image}
+                          alt={DOCTOR.name}
+                          fill
+                          priority
+                          sizes="160px"
+                          className="object-cover object-top"
+                        />
+                      </div>
                     </div>
                     <h3 className="text-2xl font-bold text-[#162554]">{DOCTOR.name}</h3>
                     <p className="text-sm font-semibold text-[#4F7DF8] mt-1">{DOCTOR.title}</p>

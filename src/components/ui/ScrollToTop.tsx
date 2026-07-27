@@ -2,7 +2,8 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, Calendar } from 'lucide-react';
+import { AppointmentModal } from './AppointmentModal';
 
 const ScrollToTop: React.FC = () => {
   const isDark = true;
@@ -10,10 +11,24 @@ const ScrollToTop: React.FC = () => {
   const [isStripVisible, setIsStripVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hasScrollableContent, setHasScrollableContent] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const stripIdleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasAutoOpenedRef = useRef(false);
 
   const STRIP_HEIGHT = 120;
   const THUMB_HEIGHT = 14;
+
+  // Auto-open appointment modal: 10 seconds timer OR 40% scroll (whichever occurs first)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!hasAutoOpenedRef.current) {
+        hasAutoOpenedRef.current = true;
+        setIsModalOpen(true);
+      }
+    }, 10000); // 10 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const showStripTemporarily = useCallback(() => {
     setIsStripVisible(true);
@@ -46,6 +61,12 @@ const ScrollToTop: React.FC = () => {
 
     setScrollProgress(progress);
     setIsVisible(scrolled > 300);
+
+    // Auto-open appointment modal if user scrolls 35-50% (40% mark) before timer
+    if (progress >= 40 && !hasAutoOpenedRef.current) {
+      hasAutoOpenedRef.current = true;
+      setIsModalOpen(true);
+    }
 
     if (showStrip) {
       showStripTemporarily();
@@ -109,6 +130,13 @@ const ScrollToTop: React.FC = () => {
 
   return (
     <>
+      {/* Appointment Modal */}
+      <AppointmentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+
+      {/* Progress Strip */}
       <AnimatePresence>
         {hasScrollableContent && isStripVisible && (
           <motion.div
@@ -141,15 +169,49 @@ const ScrollToTop: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            className="fixed bottom-8 right-8 z-50"
+      {/* Stacked Floating Action Buttons Container (Bottom Right) */}
+      <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3 items-center">
+        {/* Top Floating Icon: Open Appointment Modal */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="relative group"
+        >
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0 20px 40px -10px rgba(79, 125, 248, 0.6)"
+            }}
+            whileTap={{ scale: 0.92 }}
+            onClick={() => setIsModalOpen(true)}
+            className="
+              relative w-14 h-14 rounded-full
+              bg-gradient-to-tr from-[#162554] via-[#4F7DF8] to-[#95CCDD]
+              text-white shadow-2xl
+              flex items-center justify-center
+              border-2 border-white
+              focus:outline-none focus:ring-2 focus:ring-white/50
+              cursor-pointer transition-all duration-300
+            "
+            aria-label="Book Appointment Modal"
           >
+            <Calendar className="w-6 h-6 text-white" />
+            <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-white animate-pulse" />
+          </motion.button>
+
+          {/* Hover Tooltip */}
+          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-3 px-3 py-1.5 rounded-xl bg-[#162554] text-white text-xs font-bold whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Book Appointment
+          </div>
+        </motion.div>
+
+        {/* Bottom Floating Icon: Scroll To Top */}
+        <AnimatePresence>
+          {isVisible && (
             <motion.button
+              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.8 }}
               whileHover={{
                 scale: 1.1,
                 boxShadow: "0 25px 50px -12px rgba(79, 125, 248, 0.5)"
@@ -166,6 +228,7 @@ const ScrollToTop: React.FC = () => {
                 transition-all duration-300
                 focus:outline-none focus:ring-2 focus:ring-white/50
                 group overflow-hidden
+                cursor-pointer
               "
               style={{
                 background: `
@@ -194,11 +257,12 @@ const ScrollToTop: React.FC = () => {
                 />
               </motion.div>
             </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 };
 
 export default ScrollToTop;
+
