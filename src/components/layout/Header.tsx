@@ -146,13 +146,14 @@ export const Header: React.FC = () => {
               <span>{CONTACT.phone}</span>
             </a>
 
-            <button
+            <Button
               onClick={() => openModal()}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#4F7DF8] to-[#3A62D4] hover:from-[#3A62D4] hover:to-[#2A4EB8] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap transform hover:scale-[1.02]"
+              variant="primary"
+              size="sm"
+              icon={Calendar}
             >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Appointment</span>
-            </button>
+              Book Appointment
+            </Button>
           </div>
 
           {/* Mobile Hamburger Toggle */}
