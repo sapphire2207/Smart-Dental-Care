@@ -128,7 +128,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card hover borderGradient className="space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-[#EEF5FF] text-[#4F7DF8] flex items-center justify-center">
-              <Sparkles className="w-6 h-6" />
+              <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold text-[#162554]">Our Mission</h3>
             <p className="text-sm text-gray-600 leading-relaxed">

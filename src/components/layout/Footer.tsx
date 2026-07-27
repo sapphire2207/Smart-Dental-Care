@@ -13,6 +13,7 @@ import {
 import { BRAND, CONTACT, TIMINGS, NAV_LINKS, FOOTER_LINKS, DOCTOR } from "@/lib/constants";
 import { useAppointmentModal } from "@/components/providers/AppointmentModalProvider";
 import { LogoIcon } from "@/components/ui/LogoIcon";
+import { Button } from "@/components/ui/Button";
 
 export const Footer: React.FC = () => {
   const { openModal } = useAppointmentModal();
@@ -42,111 +43,79 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
 
-            <p className="text-gray-300/80 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Led by <strong className="text-white">{DOCTOR.name}</strong> (MDS Endodontist & Cosmetic Dentist with {DOCTOR.experienceYears}+ years experience). Painless modern dentistry with 10,000+ teeth treated.
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-sm">
+              Lead Endodontist & Cosmetic Specialist <strong className="text-white font-semibold">{DOCTOR.name}</strong> (BDS, MDS). Treating 10,000+ teeth with pain-free precision.
             </p>
 
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="px-3 py-1 rounded-full bg-white/10 text-[11px] font-medium text-[#95CCDD] border border-white/10 flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#95CCDD]" />
-                Reg No: A7388
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white/10 text-[11px] font-medium text-white border border-white/10">
-                10,000+ Happy Smiles
-              </span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs text-blue-100">
+              <ShieldCheck className="w-4 h-4 text-[#95CCDD]" />
+              <span>Sterilized Autoclave Facility</span>
             </div>
           </div>
 
           {/* Col 2: Navigation Links */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider text-[#95CCDD]">
-              Navigation
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2">
+              Quick Links
             </h4>
-            <ul className="space-y-2">
-              {NAV_LINKS.map((link) => (
+            <ul className="space-y-2 text-xs sm:text-sm">
+              {FOOTER_LINKS.quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-300 hover:text-white text-xs sm:text-sm font-medium transition-colors duration-200 inline-flex items-center gap-1.5 group"
-                  >
-                    <span className="text-[#4F7DF8] group-hover:translate-x-1 transition-transform font-bold">›</span>
-                    <span>{link.label}</span>
+                  <Link href={link.href} className="text-gray-300 hover:text-[#95CCDD] transition-colors">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3: Treatments List */}
+          {/* Col 3: Popular Treatments */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider text-[#95CCDD]">
-              Treatments
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2">
+              Popular Treatments
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-xs sm:text-sm">
               {FOOTER_LINKS.treatments.map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-gray-300 hover:text-white text-xs sm:text-sm font-medium transition-colors duration-200 inline-flex items-center gap-1.5 group"
-                  >
-                    <span className="text-[#4F7DF8] group-hover:translate-x-1 transition-transform font-bold">›</span>
-                    <span>{item.label}</span>
+                  <Link href={item.href} className="text-gray-300 hover:text-[#95CCDD] transition-colors">
+                    {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4: Contact & Hours */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider text-[#95CCDD]">
-              Contact & Hours
+          {/* Col 4: Contact & Timings */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2">
+              Clinic Contact
             </h4>
-
-            <div className="space-y-2 text-xs text-gray-300">
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-                <div className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#95CCDD] shrink-0 mt-0.5" />
-                  <p className="leading-snug text-gray-200">{CONTACT.address.full}</p>
-                </div>
-                <div className="flex items-center gap-2 pt-1 border-t border-white/10">
-                  <Phone className="w-3.5 h-3.5 text-[#95CCDD]" />
-                  <a href={`tel:${CONTACT.phoneClean}`} className="hover:text-white font-semibold text-gray-200">
-                    {CONTACT.phone}
-                  </a>
-                </div>
+            <div className="space-y-2.5 text-xs sm:text-sm text-gray-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#95CCDD] shrink-0 mt-0.5" />
+                <span>{CONTACT.address.full}</span>
               </div>
-
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-white flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-[#95CCDD]" />
-                    {TIMINGS.weekdays.days}:
-                  </span>
-                  <span className="text-gray-300">{TIMINGS.weekdays.morning} & {TIMINGS.weekdays.evening}</span>
-                </div>
-                <div className="flex items-center justify-between pt-1 border-t border-white/10">
-                  <span className="font-semibold text-white flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-[#95CCDD]" />
-                    {TIMINGS.sunday.days}:
-                  </span>
-                  <span className="text-gray-300">{TIMINGS.sunday.morning}</span>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#95CCDD] shrink-0" />
+                <a href={`tel:${CONTACT.phoneClean}`} className="hover:text-white transition-colors font-semibold">
+                  {CONTACT.phone}
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5 pt-1">
+                <Clock className="w-4 h-4 text-[#95CCDD] shrink-0 mt-0.5" />
+                <div>
+                  <p><strong className="text-white">Mon - Sat:</strong> {TIMINGS.weekdays.morning} & {TIMINGS.weekdays.evening}</p>
+                  <p><strong className="text-white">Sunday:</strong> {TIMINGS.sunday.morning}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ===== HORIZONTAL CTA BANNER WITH ROUNDED CORNERS ===== */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1E3470] via-[#254294] to-[#4F7DF8] p-6 sm:p-8 border border-white/15 shadow-2xl">
-          {/* Background glow circle */}
-          <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-2 text-center md:text-left">
-              <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold uppercase tracking-wider border border-white/20 inline-block">
-                Zero Wait-Time Reservation
-              </span>
+        {/* ===== HORIZONTAL ROUNDED CTA BANNER ===== */}
+        <div className="rounded-3xl bg-gradient-to-r from-[#1E3470] via-[#4F7DF8] to-[#1E3470] p-6 sm:p-8 shadow-2xl border border-white/20">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1 text-center md:text-left">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 Ready for a Healthier, Brighter Smile?
               </h3>
@@ -156,21 +125,23 @@ export const Footer: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
-              <button
+              <Button
                 onClick={() => openModal()}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-blue-50 text-[#162554] font-bold text-sm shadow-xl transition-all duration-200 transform hover:scale-105"
+                variant="white"
+                size="md"
+                icon={Calendar}
               >
-                <Calendar className="w-4 h-4 text-[#4F7DF8]" />
-                <span>Book Appointment Now</span>
-              </button>
+                Book Appointment Now
+              </Button>
 
-              <a
+              <Button
                 href={`tel:${CONTACT.phoneClean}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition-all duration-200"
+                variant="navy"
+                size="md"
+                icon={Phone}
               >
-                <Phone className="w-4 h-4 text-[#95CCDD]" />
-                <span>Call {CONTACT.phone}</span>
-              </a>
+                Call {CONTACT.phone}
+              </Button>
             </div>
           </div>
         </div>

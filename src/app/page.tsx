@@ -14,7 +14,6 @@ import {
   CheckCircle2,
   ArrowRight,
   ArrowUpRight,
-  Sparkles,
   Stethoscope,
   Activity,
   ChevronRight,
@@ -118,21 +117,23 @@ export default function HomePage() {
 
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
+                <Button
                   onClick={() => openModal()}
-                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-gradient-to-r from-[#4F7DF8] to-[#3A62D4] hover:from-[#3A62D4] hover:to-[#2A4EB8] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]"
+                  variant="primary"
+                  size="lg"
+                  icon={Calendar}
                 >
-                  <Calendar className="w-5 h-5 text-white" />
-                  <span>Book an Appointment</span>
-                </button>
+                  Book an Appointment
+                </Button>
 
-                <Link
+                <Button
                   href="/about"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#EEF5FF] hover:bg-white text-[#162554] font-bold text-sm sm:text-base border border-[#4F7DF8]/20 transition-all duration-300"
+                  variant="secondary"
+                  size="lg"
+                  icon={ArrowRight}
                 >
-                  <span>Learn More About Us</span>
-                  <ArrowRight className="w-4 h-4 text-[#4F7DF8]" />
-                </Link>
+                  Learn More About Us
+                </Button>
               </div>
 
               {/* Verified Google Rating & Social Proof Row */}
@@ -224,15 +225,14 @@ export default function HomePage() {
               Complete care for your smile — prevention, restoration, and aesthetic treatments in one place led by Dr. Amulya Prrasad.
             </p>
             <div>
-              <button
+              <Button
                 onClick={() => openModal()}
-                className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-[#162554] hover:bg-[#1E3470] text-white text-sm font-bold shadow-lg transition-all duration-300 group"
+                variant="navy"
+                size="md"
+                icon={ArrowRight}
               >
-                <span>Schedule Appointment</span>
-                <div className="w-7 h-7 rounded-xl bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-[#95CCDD]" />
-                </div>
-              </button>
+                Schedule Appointment
+              </Button>
             </div>
           </div>
         </div>
@@ -562,15 +562,15 @@ export default function HomePage() {
                   />
                 </div>
 
-                <button
+                <Button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-[#162554] hover:bg-[#1E3470] text-white font-bold text-sm shadow-xl transition-all duration-300 group"
+                  variant="navy"
+                  size="lg"
+                  fullWidth
+                  icon={ChevronRight}
                 >
-                  <span>Schedule Appointment</span>
-                  <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                    <ChevronRight className="w-4 h-4 text-[#95CCDD]" />
-                  </div>
-                </button>
+                  Schedule Appointment
+                </Button>
               </form>
 
               <div className="flex items-center gap-2 text-xs text-gray-500 pt-1">

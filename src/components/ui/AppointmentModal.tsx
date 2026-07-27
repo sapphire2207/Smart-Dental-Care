@@ -18,7 +18,7 @@ import {
 import { BRAND, DOCTOR, CONTACT } from "@/lib/constants";
 import { SERVICES } from "@/lib/services-data";
 import { Button } from "@/components/ui/Button";
-import { Input, Textarea, Select } from "@/components/ui/FormControls";
+import { Input, Textarea, Select, DatePicker } from "@/components/ui/FormControls";
 import { LogoIcon } from "@/components/ui/LogoIcon";
 
 interface AppointmentModalProps {
@@ -153,13 +153,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </div>
               </div>
 
-              <button
+              <Button
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors focus:outline-none"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
+                variant="ghost"
+                size="sm"
+                icon={X}
+                className="!p-2 rounded-full !bg-white/10 hover:!bg-white/20 text-white shadow-none border-none"
+              />
             </div>
 
             {/* Content Body */}
@@ -263,15 +263,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Input
+                    <DatePicker
                       label="Preferred Date *"
                       name="preferredDate"
-                      type="date"
                       required
                       min={new Date().toISOString().split("T")[0]}
                       value={formData.preferredDate}
                       onChange={handleChange}
-                      icon={<Calendar className="w-4 h-4" />}
                     />
 
                     <Select
