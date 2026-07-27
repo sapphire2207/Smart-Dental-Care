@@ -1,22 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingCTA } from "@/components/ui/FloatingCTA";
 import LenisProvider from "@/components/providers/LenisProvider";
 import ScrollToTop from "@/components/ui/ScrollToTop";
-import { BRAND, DOCTOR, CONTACT } from "@/lib/constants";
+import { BRAND, DOCTOR } from "@/lib/constants";
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
+const urbanist = localFont({
+  src: [
+    {
+      path: "../../public/Urbanist/Urbanist-VariableFont_wght.ttf",
+      style: "normal",
+    },
+    {
+      path: "../../public/Urbanist/Urbanist-Italic-VariableFont_wght.ttf",
+      style: "italic",
+    },
+  ],
+  variable: "--font-urbanist",
   display: "swap",
 });
 
@@ -65,8 +68,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="font-body text-[#111827] bg-[#FAFBFD] min-h-screen flex flex-col antialiased">
+    <html lang="en" className={urbanist.variable}>
+      <body className="font-sans text-[#111827] bg-[#FAFBFD] min-h-screen flex flex-col antialiased">
         <LenisProvider>
           <Header />
           <main className="flex-grow pt-24 sm:pt-28">{children}</main>
