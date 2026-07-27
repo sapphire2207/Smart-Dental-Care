@@ -7,7 +7,7 @@ export const BRAND = {
   description:
     "Advanced dental treatments with compassion, precision, and the latest technology. Led by Dr. Amulya Prrasad with 17+ years of experience.",
   foundedYear: 2009,
-  logo: "/images/logo.svg",
+  logo: "/logo.png",
 } as const;
 
 export const DOCTOR = {
@@ -140,7 +140,6 @@ export const WHY_CHOOSE_US = [
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
   {
     label: "Services",
     href: "/services",
@@ -154,11 +153,27 @@ export const NAV_LINKS = [
       { label: "View All Services", href: "/services" },
     ],
   },
-  { label: "Smile Gallery", href: "/gallery" },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQs", href: "/faq" },
-  { label: "Contact", href: "/contact" },
+  {
+    label: "Gallery & Blog",
+    href: "/gallery",
+    children: [
+      { label: "Smile Gallery", href: "/gallery" },
+      { label: "Dental Blog & Articles", href: "/blog" },
+    ],
+  },
+  {
+    label: "About & Info",
+    href: "/about",
+    children: [
+      { label: "About Clinic", href: "/about" },
+      { label: "Meet Dr. Amulya", href: "/doctor" },
+      { label: "FAQs & Questions", href: "/faq" },
+      { label: "Contact & Directions", href: "/contact" },
+    ],
+  },
 ] as const;
+
+
 
 export const FOOTER_LINKS = {
   quickLinks: [

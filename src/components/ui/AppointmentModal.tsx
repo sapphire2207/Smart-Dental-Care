@@ -19,6 +19,7 @@ import { BRAND, DOCTOR, CONTACT } from "@/lib/constants";
 import { SERVICES } from "@/lib/services-data";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/FormControls";
+import { LogoIcon } from "@/components/ui/LogoIcon";
 
 interface AppointmentModalProps {
   isOpen: boolean;
@@ -145,9 +146,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 bg-gradient-to-r from-[#162554] via-[#1E3470] to-[#4F7DF8] text-white shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-md">
-                  <Stethoscope className="w-5 h-5 text-[#95CCDD]" />
-                </div>
+                <LogoIcon className="w-9 h-9 filter drop-shadow-md" />
                 <div>
                   <h3 className="text-lg font-bold tracking-tight">Book Dental Appointment</h3>
                   <p className="text-xs text-blue-100">Quick online slot request with Dr. Amulya Prrasad</p>
