@@ -7,7 +7,8 @@ import {
   Clock,
   ExternalLink,
   MessageSquare,
-  AlertCircle
+  AlertCircle,
+  CheckCircle2
 } from "lucide-react";
 import { BRAND, CONTACT, TIMINGS } from "@/lib/constants";
 import { Card } from "@/components/ui/Card";
@@ -130,8 +131,9 @@ export default function ContactPage() {
 
               <div className="pt-2 flex flex-wrap gap-2">
                 {CONTACT.features.map((feature) => (
-                  <span key={feature} className="px-3 py-1 rounded-full bg-[#EEF5FF] text-[#4F7DF8] text-xs font-semibold border border-[#4F7DF8]/20">
-                    ✨ {feature}
+                  <span key={feature} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF5FF] text-[#4F7DF8] text-xs font-semibold border border-[#4F7DF8]/20">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#4F7DF8]" />
+                    <span>{feature}</span>
                   </span>
                 ))}
               </div>

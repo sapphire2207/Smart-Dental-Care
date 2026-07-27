@@ -76,8 +76,8 @@ export const CONTACT = {
     full: "Plot No 154, 1st Floor, Saroor Nagar Rd, Opp. Namita Everest, Near Metro Station, Above Medplus Pharmacy, Near SBI Bank, Rajyalaxmi Nagar, SBH Colony, L. B. Nagar, Hyderabad, Telangana 500074",
   },
   googleMapsUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.5!2d78.55!3d17.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIxJzAwLjAiTiA3OMKwMzMnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890",
-  googleMapsLink: "https://maps.google.com/?q=Plot+No+154+1st+Floor+Saroor+Nagar+Rd+LB+Nagar+Hyderabad",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7616.634256939543!2d78.54650384196219!3d17.34846658412821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb98a30e7b8a43%3A0x5b6a3540a68583d4!2sSmart%20Dental%20Care!5e0!3m2!1sen!2sin!4v1785157894601!5m2!1sen!2sin",
+  googleMapsLink: "https://maps.app.goo.gl/4ZqYE7bGnQSWK46c8",
 } as const;
 
 
@@ -99,14 +99,14 @@ export const SOCIAL_LINKS = {
   instagram: "https://instagram.com/smartdentalcare",
   twitter: "https://twitter.com/smartdentalcare",
   youtube: "https://youtube.com/@smartdentalcare",
-  google: "https://g.co/kgs/smartdentalcare",
+  google: "https://maps.app.goo.gl/4ZqYE7bGnQSWK46c8",
 } as const;
 
 export const STATS = [
   { value: "17+", label: "Years Experience", icon: "award" },
-  { value: "10,000+", label: "Happy Patients", icon: "users" },
+  { value: "10,000+", label: "Teeth Treated", icon: "users" },
   { value: "24+", label: "Treatments", icon: "stethoscope" },
-  { value: "4.9", label: "Patient Rating", suffix: "/5", icon: "star" },
+  { value: "4.5", label: "Google Rating", suffix: "/5 (49)", icon: "star" },
 ] as const;
 
 export const WHY_CHOOSE_US = [
