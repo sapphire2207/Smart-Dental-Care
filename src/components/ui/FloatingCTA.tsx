@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Phone } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
+import { useAppointmentModal } from "@/components/providers/AppointmentModalProvider";
 
 export const FloatingCTA: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { openModal } = useAppointmentModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,13 +43,13 @@ export const FloatingCTA: React.FC = () => {
               <span>Call Now</span>
             </a>
 
-            <Link
-              href="/book-appointment"
+            <button
+              onClick={() => openModal()}
               className="flex-[1.4] flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#4F7DF8] hover:bg-[#3A62D4] text-white font-semibold text-sm shadow-md transition-colors"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Appointment</span>
-            </Link>
+            </button>
           </div>
         </motion.div>
       )}

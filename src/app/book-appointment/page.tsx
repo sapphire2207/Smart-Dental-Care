@@ -33,6 +33,7 @@ export default function BookAppointmentPage() {
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [userEmailSent, setUserEmailSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const timeOptions = [
@@ -67,8 +68,9 @@ export default function BookAppointmentPage() {
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success) {
         setSubmitted(true);
+        setUserEmailSent(Boolean(data.userEmailSent));
       } else {
         setErrorMessage(data?.error || "Failed to submit appointment. Please try again.");
       }
@@ -120,6 +122,13 @@ export default function BookAppointmentPage() {
                     <strong className="text-[#4F7DF8]">{formData.service}</strong> on{" "}
                     <strong>{formData.preferredDate}</strong> ({formData.preferredTime}).
                   </p>
+
+                  {userEmailSent && (
+                    <div className="p-3 rounded-2xl bg-emerald-50 text-emerald-800 text-xs font-medium flex items-center justify-center gap-2 max-w-md mx-auto border border-emerald-200">
+                      <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Confirmation email sent to <strong>{formData.email}</strong>!</span>
+                    </div>
+                  )}
 
                   <div className="p-4 rounded-2xl bg-[#EEF5FF] text-xs text-[#162554] font-medium max-w-md mx-auto">
                     Our receptionist will call you shortly on <strong>{formData.phone}</strong> to confirm your exact time slot.

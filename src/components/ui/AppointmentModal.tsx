@@ -1,157 +1,325 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, Phone, ShieldCheck, Stethoscope, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
-import { DOCTOR, BRAND, CONTACT } from "@/lib/constants";
+import {
+  X,
+  Calendar,
+  Clock,
+  User,
+  Phone,
+  Mail,
+  Stethoscope,
+  CheckCircle2,
+  AlertCircle,
+  ShieldCheck,
+  Send
+} from "lucide-react";
+import { BRAND, DOCTOR, CONTACT } from "@/lib/constants";
+import { SERVICES } from "@/lib/services-data";
 import { Button } from "@/components/ui/Button";
+import { Input, Textarea, Select } from "@/components/ui/FormControls";
 
 interface AppointmentModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialService?: string;
 }
 
 export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   isOpen,
   onClose,
+  initialService,
 }) => {
-  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: initialService || SERVICES[0]?.title || "Root Canal Treatment (RCT)",
+    preferredDate: "",
+    preferredTime: "10:00 AM - 12:00 PM",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [userEmailSent, setUserEmailSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+    if (initialService) {
+      setFormData((prev) => ({ ...prev, service: initialService }));
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  }, [initialService]);
 
-  const handleBookNow = () => {
-    onClose();
-    router.push("/book-appointment");
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  const timeOptions = [
+    { value: "10:00 AM - 12:00 PM", label: "Morning: 10:00 AM - 12:00 PM" },
+    { value: "12:00 PM - 02:00 PM", label: "Afternoon: 12:00 PM - 02:00 PM" },
+    { value: "05:00 PM - 07:00 PM", label: "Evening: 05:00 PM - 07:00 PM" },
+    { value: "07:00 PM - 09:00 PM", label: "Night: 07:00 PM - 09:00 PM" },
+  ];
+
+  const serviceOptions = SERVICES.map((s) => ({
+    value: s.title,
+    label: s.title,
+  }));
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        setUserEmailSent(Boolean(data.userEmailSent));
+      } else {
+        setErrorMessage(data?.error || "Failed to send appointment request. Please try again.");
+      }
+    } catch (err: any) {
+      setErrorMessage("Network error. Please try again or call the clinic directly.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setUserEmailSent(false);
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      service: SERVICES[0]?.title || "Root Canal Treatment (RCT)",
+      preferredDate: "",
+      preferredTime: "10:00 AM - 12:00 PM",
+      message: "",
+    });
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md overflow-y-auto"
-          onClick={onClose}
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          {/* Backdrop */}
           <motion.div
-            initial={{ scale: 0.88, opacity: 0, y: 30 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-[#162554]/60 backdrop-blur-sm"
+          />
+
+          {/* Modal Container */}
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.88, opacity: 0, y: 30 }}
-            transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-white rounded-[32px] shadow-2xl border border-gray-100 overflow-hidden my-auto"
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: "spring", duration: 0.4, bounce: 0.1 }}
+            className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 z-10 max-h-[90vh] flex flex-col"
           >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/20 hover:bg-white/40 text-white transition-colors focus:outline-none backdrop-blur-sm cursor-pointer"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Modal Header Decorative Banner */}
-            <div className="bg-gradient-to-r from-[#162554] via-[#4F7DF8] to-[#162554] p-6 sm:p-8 text-white relative overflow-hidden">
-              <div className="absolute -top-10 -right-10 w-44 h-44 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#95CCDD]/20 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-3.5 py-1 rounded-full bg-white/20 text-[11px] font-bold uppercase tracking-wider text-white border border-white/20 inline-flex items-center gap-1.5 backdrop-blur-sm">
-                  <Sparkles className="w-3.5 h-3.5 text-[#95CCDD]" />
-                  <span>Instant Slot Reservation</span>
-                </span>
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-5 bg-gradient-to-r from-[#162554] via-[#1E3470] to-[#4F7DF8] text-white shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-md">
+                  <Stethoscope className="w-5 h-5 text-[#95CCDD]" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold tracking-tight">Book Dental Appointment</h3>
+                  <p className="text-xs text-blue-100">Quick online slot request with Dr. Amulya Prrasad</p>
+                </div>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                Ready for Pain-Free, Expert Dental Care?
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-200 mt-2 leading-relaxed max-w-md">
-                Schedule your consultation with <strong className="text-white">{DOCTOR.name}</strong> (MDS Endodontist & Cosmetic Dentist with 17+ Years Experience).
-              </p>
+              <button
+                onClick={onClose}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors focus:outline-none"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Modal Body */}
-            <div className="p-6 sm:p-8 space-y-6 bg-white">
-              {/* Doctor Card Profile Preview */}
-              <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#EEF5FF] border border-[#4F7DF8]/20 shadow-sm">
-                <div className="w-14 h-14 rounded-full bg-white p-0.5 shadow-md relative overflow-hidden shrink-0 border-2 border-[#4F7DF8]">
-                  <Image
-                    src={DOCTOR.image}
-                    alt={DOCTOR.name}
-                    fill
-                    sizes="120px"
-                    className="object-cover object-top"
+            {/* Content Body */}
+            <div className="p-6 overflow-y-auto space-y-6">
+              {submitted ? (
+                <div className="text-center py-8 space-y-6">
+                  <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
+                    <CheckCircle2 className="w-10 h-10" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="text-2xl font-extrabold text-[#162554]">
+                      Appointment Request Received!
+                    </h4>
+                    <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
+                      Thank you, <strong className="text-[#162554]">{formData.name}</strong>. We have received your booking request for{" "}
+                      <strong className="text-[#4F7DF8]">{formData.service}</strong> on{" "}
+                      <strong>{formData.preferredDate}</strong> ({formData.preferredTime}).
+                    </p>
+                  </div>
+
+                  {userEmailSent ? (
+                    <div className="p-3 rounded-2xl bg-emerald-50 text-emerald-800 text-xs font-medium flex items-center justify-center gap-2 border border-emerald-200/80">
+                      <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Confirmation email sent to <strong>{formData.email}</strong>!</span>
+                    </div>
+                  ) : (
+                    formData.email && (
+                      <div className="p-3 rounded-2xl bg-[#EEF5FF] text-[#162554] text-xs font-medium border border-[#4F7DF8]/20">
+                        <span>Details sent to clinic staff. Confirmation calls will be made shortly.</span>
+                      </div>
+                    )
+                  )}
+
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-gray-600 max-w-md mx-auto space-y-1">
+                    <p className="font-semibold text-[#162554]">📞 Reception Call Back</p>
+                    <p>Our receptionist will call you on <strong>{formData.phone}</strong> to confirm your slot time.</p>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <Button onClick={handleReset} variant="outline" size="sm">
+                      Book Another Slot
+                    </Button>
+                    <Button onClick={onClose} variant="primary" size="sm">
+                      Done / Close
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {errorMessage && (
+                    <div className="p-4 rounded-2xl bg-red-50 text-red-700 text-xs font-semibold flex items-center gap-2 border border-red-200">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input
+                      label="Full Name *"
+                      name="name"
+                      required
+                      placeholder="e.g. Rahul Sharma"
+                      value={formData.name}
+                      onChange={handleChange}
+                      icon={<User className="w-4 h-4" />}
+                    />
+
+                    <Input
+                      label="Phone Number *"
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder="e.g. 9876543210"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      icon={<Phone className="w-4 h-4" />}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input
+                      label="Email Address (For Confirmation Email)"
+                      name="email"
+                      type="email"
+                      placeholder="e.g. rahul@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      icon={<Mail className="w-4 h-4" />}
+                    />
+
+                    <Select
+                      label="Treatment / Service *"
+                      name="service"
+                      required
+                      options={serviceOptions}
+                      value={formData.service}
+                      onChange={handleChange}
+                      icon={<Stethoscope className="w-4 h-4" />}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input
+                      label="Preferred Date *"
+                      name="preferredDate"
+                      type="date"
+                      required
+                      min={new Date().toISOString().split("T")[0]}
+                      value={formData.preferredDate}
+                      onChange={handleChange}
+                      icon={<Calendar className="w-4 h-4" />}
+                    />
+
+                    <Select
+                      label="Preferred Time Slot *"
+                      name="preferredTime"
+                      required
+                      options={timeOptions}
+                      value={formData.preferredTime}
+                      onChange={handleChange}
+                      icon={<Clock className="w-4 h-4" />}
+                    />
+                  </div>
+
+                  <Textarea
+                    label="Symptoms or Notes (Optional)"
+                    name="message"
+                    placeholder="Describe any tooth pain, sensitivity, or special requests..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={3}
                   />
-                </div>
-                <div className="space-y-0.5">
-                  <h4 className="text-base font-bold text-[#162554]">{DOCTOR.name}</h4>
-                  <p className="text-xs font-semibold text-[#4F7DF8]">{DOCTOR.title}</p>
-                  <p className="text-[11px] text-gray-500">10,000+ Teeth Saved • LB Nagar, Hyderabad</p>
-                </div>
-              </div>
 
-              {/* Patient Care Checklist */}
-              <div className="space-y-2.5 text-xs text-gray-700 font-medium">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="lg"
+                      fullWidth
+                      disabled={loading}
+                      icon={Send}
+                    >
+                      {loading ? "Sending Booking Request..." : "Confirm & Send Appointment Request"}
+                    </Button>
                   </div>
-                  <span>Single Sitting Painless Root Canal Specialist</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+
+                  <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1 border-t border-gray-100">
+                    <span className="flex items-center gap-1">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      100% Sterile & Confidential
+                    </span>
+                    <span>Direct Doctor Notification</span>
                   </div>
-                  <span>100% Sterile & Hospital-grade Infection Control</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
-                  <span>Zero Waiting Time for Online Bookings</span>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-3 pt-2">
-                <Button
-                  onClick={handleBookNow}
-                  variant="primary"
-                  size="lg"
-                  fullWidth
-                  icon={Calendar}
-                >
-                  Book Appointment Now
-                </Button>
-
-                <a
-                  href={`tel:${CONTACT.phoneClean}`}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-gray-100 hover:bg-gray-200 text-[#162554] font-semibold text-sm transition-colors border border-gray-200"
-                >
-                  <Phone className="w-4 h-4 text-[#4F7DF8]" />
-                  <span>Call Clinic: {CONTACT.phone}</span>
-                </a>
-              </div>
-
-              <p className="text-[11px] text-gray-400 text-center">
-                🔒 Fast confirmation by our receptionist within minutes.
-              </p>
+                </form>
+              )}
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

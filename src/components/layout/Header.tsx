@@ -7,12 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Phone, Calendar, Stethoscope } from "lucide-react";
 import { BRAND, NAV_LINKS, CONTACT } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { useAppointmentModal } from "@/components/providers/AppointmentModalProvider";
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const { openModal } = useAppointmentModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -137,7 +139,7 @@ export const Header: React.FC = () => {
             <span>{CONTACT.phone}</span>
           </a>
 
-          <Button href="/book-appointment" variant="primary" size="md" icon={Calendar}>
+          <Button onClick={() => openModal()} variant="primary" size="md" icon={Calendar}>
             Book Appointment
           </Button>
         </div>
@@ -184,7 +186,7 @@ export const Header: React.FC = () => {
                   <span>Call {CONTACT.phone}</span>
                 </a>
 
-                <Button href="/book-appointment" variant="primary" size="md" fullWidth icon={Calendar}>
+                <Button onClick={() => { setMobileMenuOpen(false); openModal(); }} variant="primary" size="md" fullWidth icon={Calendar}>
                   Book Appointment
                 </Button>
               </div>

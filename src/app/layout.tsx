@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingCTA } from "@/components/ui/FloatingCTA";
 import LenisProvider from "@/components/providers/LenisProvider";
+import { AppointmentModalProvider } from "@/components/providers/AppointmentModalProvider";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import { BRAND, DOCTOR } from "@/lib/constants";
 
@@ -70,14 +71,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={urbanist.variable}>
       <body className="font-sans text-[#111827] bg-[#FAFBFD] min-h-screen flex flex-col antialiased">
-        <LenisProvider>
-          <Header />
-          <main className="flex-grow pt-24 sm:pt-28">{children}</main>
-          <Footer />
-          <FloatingCTA />
-          <ScrollToTop />
-        </LenisProvider>
+        <AppointmentModalProvider>
+          <LenisProvider>
+            <Header />
+            <main className="flex-grow pt-24 sm:pt-28">{children}</main>
+            <Footer />
+            <FloatingCTA />
+            <ScrollToTop />
+          </LenisProvider>
+        </AppointmentModalProvider>
       </body>
     </html>
   );
 }
+
