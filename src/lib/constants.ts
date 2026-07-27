@@ -1,8 +1,8 @@
-// ===== Brand & Business Constants =====
-
 export const BRAND = {
   name: "Smart Dental Care",
   shortName: "SDC",
+  domain: "smartdentalsolutions.in",
+  websiteUrl: "https://smartdentalsolutions.in",
   tagline: "Perfect Smiles, Expert Dental Care",
   description:
     "Advanced dental treatments with compassion, precision, and the latest technology. Led by Dr. Amulya Prrasad with 17+ years of experience.",
@@ -58,24 +58,28 @@ He qualified in 2009 from the Kamineni Institute of Dental Sciences, Narketpally
 } as const;
 
 export const CONTACT = {
-  phone: "+91 83179 54784",
-  phoneClean: "918317954784",
+  phone: "+91 99498 09200",
+  phoneClean: "919949809200",
   email: "smartdentalcarehyd@gmail.com",
-  whatsapp: "918317954784",
+  whatsapp: "919949809200",
+  domain: "smartdentalsolutions.in",
+  plusCode: "8GXW+2X Hyderabad, Telangana, India",
+  features: ["LGBTQ+ Friendly", "Identifies as Women-Owned"],
   address: {
-    line1: "Plot No 154, 1st Floor, SBH Colony",
-    line2: "Saroornagar Road, LB Nagar Circle",
+    line1: "Plot No 154, 1st Floor, Saroor Nagar Rd",
+    line2: "Opp. Namita Everest, Near LB Nagar Metro Station",
     landmark:
-      "Above Medplus Pharmacy, Near SBH Bank, Opposite Namita Everest, Liberty Coffee & Back Side of Hanuman Temple",
+      "Opp. Namita Everest, Near Metro Station, Above Medplus Pharmacy, Near SBI Bank, Rajyalaxmi Nagar, SBH Colony",
     city: "Hyderabad",
     state: "Telangana",
     pincode: "500074",
-    full: "Plot No 154, 1st Floor, SBH Colony, Saroornagar Road, LB Nagar Circle, Hyderabad - 500074",
+    full: "Plot No 154, 1st Floor, Saroor Nagar Rd, Opp. Namita Everest, Near Metro Station, Above Medplus Pharmacy, Near SBI Bank, Rajyalaxmi Nagar, SBH Colony, L. B. Nagar, Hyderabad, Telangana 500074",
   },
   googleMapsUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.5!2d78.55!3d17.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIxJzAwLjAiTiA3OMKwMzMnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890",
-  googleMapsLink: "https://maps.google.com/?q=Smart+Dental+Care+LB+Nagar+Hyderabad",
+  googleMapsLink: "https://maps.google.com/?q=Plot+No+154+1st+Floor+Saroor+Nagar+Rd+LB+Nagar+Hyderabad",
 } as const;
+
 
 export const TIMINGS = {
   weekdays: {

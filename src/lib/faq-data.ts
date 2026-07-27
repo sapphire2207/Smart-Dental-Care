@@ -46,7 +46,7 @@ export const FAQS: FAQItem[] = [
     id: "faq-7",
     category: "appointments",
     question: "How do I book an appointment at Smart Dental Care?",
-    answer: "You can book directly online through our website's Appointment Booking page, call us at +91 83179 54784, or message us on WhatsApp for instant confirmation."
+    answer: "You can book directly online through our website's Appointment Booking page, call us at +91 99498 09200, or message us on WhatsApp for instant confirmation."
   },
   {
     id: "faq-8",
@@ -64,6 +64,6 @@ export const FAQS: FAQItem[] = [
     id: "faq-10",
     category: "general",
     question: "Do you offer emergency dental care?",
-    answer: "Yes, we prioritize emergency cases such as acute severe toothache, broken front teeth, or facial swelling. Contact +91 83179 54784 for immediate emergency assistance."
+    answer: "Yes, we prioritize emergency cases such as acute severe toothache, broken front teeth, or facial swelling. Contact +91 99498 09200 for immediate emergency assistance."
   }
 ];
