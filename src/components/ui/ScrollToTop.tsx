@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp, Calendar } from 'lucide-react';
-import { AppointmentModal } from './AppointmentModal';
+import { AppointmentModal } from './BookingBubble';
 
 const ScrollToTop: React.FC = () => {
   const isDark = true;
