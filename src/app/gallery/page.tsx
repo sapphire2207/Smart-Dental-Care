@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Sparkles, Eye } from "lucide-react";
+import { ShieldCheck, Eye } from "lucide-react";
 import { GALLERY_ITEMS, BEFORE_AFTER_CASES, GalleryItem } from "@/lib/gallery-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";

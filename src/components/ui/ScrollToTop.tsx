@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp, Calendar } from 'lucide-react';
 import { AppointmentModal } from './BookingBubble';
+import { Button } from './Button';
 
 const ScrollToTop: React.FC = () => {
   const isDark = true;
@@ -169,94 +170,34 @@ const ScrollToTop: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Stacked Floating Action Buttons Container (Bottom Right) */}
-      <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3 items-center">
+      {/* Stacked Floating Action Buttons Container (Desktop Only - Bottom Right) */}
+      <div className="fixed bottom-8 right-8 z-50 hidden md:flex flex-col gap-3 items-center">
         {/* Top Floating Icon: Open Appointment Modal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="relative group"
-        >
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 20px 40px -10px rgba(79, 125, 248, 0.6)"
-            }}
-            whileTap={{ scale: 0.92 }}
+        <div className="relative group">
+          <Button
             onClick={() => setIsModalOpen(true)}
-            className="
-              relative w-14 h-14 rounded-full
-              bg-gradient-to-tr from-[#162554] via-[#4F7DF8] to-[#95CCDD]
-              text-white shadow-2xl
-              flex items-center justify-center
-              border-2 border-white
-              focus:outline-none focus:ring-2 focus:ring-white/50
-              cursor-pointer transition-all duration-300
-            "
-            aria-label="Book Appointment Modal"
-          >
-            <Calendar className="w-6 h-6 text-white" />
-            <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-white animate-pulse" />
-          </motion.button>
+            variant="primary"
+            size="md"
+            icon={Calendar}
+            className="!w-14 !h-14 !p-0 rounded-full shadow-[0_8px_32px_rgba(79,125,248,0.4)] hover:shadow-[0_12px_40px_rgba(79,125,248,0.6)] border-2 border-white"
+          />
 
           {/* Hover Tooltip */}
           <div className="absolute right-full top-1/2 -translate-y-1/2 mr-3 px-3 py-1.5 rounded-xl bg-[#162554] text-white text-xs font-bold whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             Book Appointment
           </div>
-        </motion.div>
+        </div>
 
         {/* Bottom Floating Icon: Scroll To Top */}
         <AnimatePresence>
           {isVisible && (
-            <motion.button
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              whileHover={{
-                scale: 1.1,
-                boxShadow: "0 25px 50px -12px rgba(79, 125, 248, 0.5)"
-              }}
-              whileTap={{ scale: 0.95 }}
+            <Button
               onClick={scrollToTop}
-              className="
-                relative w-14 h-14 rounded-full
-                bg-[#162554]/80
-                backdrop-blur-xl
-                border border-white/20
-                shadow-2xl
-                flex items-center justify-center
-                transition-all duration-300
-                focus:outline-none focus:ring-2 focus:ring-white/50
-                group overflow-hidden
-                cursor-pointer
-              "
-              style={{
-                background: `
-                  linear-gradient(135deg,
-                    rgba(79, 125, 248, 0.85) 0%,
-                    rgba(22, 37, 84, 0.9) 100%
-                  )
-                `,
-                boxShadow: `
-                  0 8px 32px rgba(79, 125, 248, 0.3),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                  inset 0 -1px 0 rgba(255, 255, 255, 0.2)
-                `
-              }}
-              aria-label="Scroll to top"
-            >
-              <motion.div
-                whileHover={{ y: -2 }}
-                className="z-10"
-              >
-                <ChevronUp
-                  className="w-7 h-7 text-white"
-                  style={{
-                    filter: "drop-shadow(0 2px 8px rgba(255,255,255,0.3))"
-                  }}
-                />
-              </motion.div>
-            </motion.button>
+              variant="navy"
+              size="md"
+              icon={ChevronUp}
+              className="!w-14 !h-14 !p-0 rounded-full shadow-2xl border-2 border-white/20"
+            />
           )}
         </AnimatePresence>
       </div>

@@ -131,7 +131,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             {service.symptoms && service.symptoms.length > 0 && (
               <Card hover borderGradient className="space-y-4">
                 <h3 className="text-xl font-bold text-[#162554] flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#4F7DF8]" />
+                  <ShieldCheck className="w-5 h-5 text-[#4F7DF8]" />
                   <span>When Do You Need {service.title}?</span>
                 </h3>
                 <ul className="space-y-3">

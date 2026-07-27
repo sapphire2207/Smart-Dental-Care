@@ -17,7 +17,7 @@ import { BRAND, DOCTOR, CONTACT, TIMINGS } from "@/lib/constants";
 import { SERVICES } from "@/lib/services-data";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Input, Textarea, Select } from "@/components/ui/FormControls";
+import { Input, Textarea, Select, DatePicker } from "@/components/ui/FormControls";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export default function BookAppointmentPage() {
@@ -199,15 +199,13 @@ export default function BookAppointmentPage() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <Input
-                      label="Preferred Date"
+                    <DatePicker
+                      label="Preferred Date *"
                       name="preferredDate"
-                      type="date"
                       required
                       min={new Date().toISOString().split("T")[0]}
                       value={formData.preferredDate}
                       onChange={handleChange}
-                      icon={<Calendar className="w-4 h-4" />}
                     />
 
                     <Select

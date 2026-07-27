@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface ButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   href?: string;
   onClick?: () => void;
   variant?: "primary" | "secondary" | "outline" | "ghost" | "navy" | "white";
@@ -136,7 +136,7 @@ export const Button: React.FC<ButtonProps> = ({
 
       <span className={`relative z-10 inline-flex items-center justify-center gap-2 transition-colors duration-300 ${currentVariant.text}`}>
         {renderIcon("left")}
-        <span>{children}</span>
+        {children && <span>{children}</span>}
         {renderIcon("right")}
       </span>
     </>

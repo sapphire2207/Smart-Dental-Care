@@ -198,3 +198,24 @@ select:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(79, 125, 248, 0.15);
 }
+
+/* Custom Dropdown Scrollbar (Transparent Track Path + Floating Thumb) */
+.custom-dropdown-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-dropdown-scroll::-webkit-scrollbar-track {
+  background: transparent; /* Track path completely hidden */
+}
+.custom-dropdown-scroll::-webkit-scrollbar-thumb {
+  background: rgba(79, 125, 248, 0.4);
+  border-radius: 9999px;
+}
+.custom-dropdown-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 125, 248, 0.85);
+}
+
+.custom-dropdown-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(79, 125, 248, 0.4) transparent;
+  overscroll-behavior: contain; /* Prevents scrolling background page */
+}
