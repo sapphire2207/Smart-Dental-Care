@@ -25,7 +25,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Save infected or severely decayed teeth with painless, single-sitting or multi-visit root canal therapy.",
     fullDescription: "Root Canal Treatment (RCT) is a specialized procedure executed by Dr. Amulya Prrasad (MDS Endodontist with 17+ years of experience and over 10,000+ teeth saved). RCT eliminates infection from the tooth pulp, cleans the internal canal structure, and seals it to preserve your natural tooth.",
     icon: "activity",
-    image: "/images/services/root-canal.jpg",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Root canal treatment is needed when the blood supply or nerve supply of the tooth (known as the pulp) becomes infected through decay or injury. With modern local anesthesia and endodontic technology, root canals are virtually painless.",
     symptoms: [
@@ -67,7 +67,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Complete root canal treatment in just one single visit using advanced endodontic equipment.",
     fullDescription: "Designed for busy professionals and patients needing quick infection resolution. Single Sitting RCT uses rotary endodontic tools, digitalapex locators, and automated disinfection to finish treatment efficiently in 45 to 60 minutes.",
     icon: "clock",
-    image: "/images/services/single-sitting-rct.jpg",
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Single Sitting RCT eliminates the hassle of multiple clinical visits without compromising clinical efficacy or patient safety.",
     symptoms: [
@@ -103,7 +103,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Permanent, natural-looking replacement for missing teeth anchored directly into the jawbone.",
     fullDescription: "Titanium dental implants provide the strongest, longest-lasting solution for missing teeth. They look, feel, and function exactly like natural teeth.",
     icon: "shield",
-    image: "/images/services/dental-implants.jpg",
+    image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "A dental implant is a titanium post surgically placed into the jawbone beneath your gums to hold a replacement tooth or bridge.",
     symptoms: [
@@ -139,7 +139,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Clear, removable aligners to straighten your teeth discreetly without metal wires or brackets.",
     fullDescription: "Invisalign offers a modern, virtually invisible approach to tooth alignment. Custom clear trays gradually shift your teeth into ideal position.",
     icon: "sparkles",
-    image: "/images/services/invisalign.jpg",
+    image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Custom-made clear aligners that fit comfortably over your teeth and can be removed for eating, drinking, brushing, and flossing.",
     symptoms: [
@@ -174,7 +174,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Comprehensive smile redesigns combining veneers, whitening, contouring, and aesthetic fillings.",
     fullDescription: "Transform your confidence with personalized smile design treatments tailored to your face aesthetics and natural features.",
     icon: "smile",
-    image: "/images/services/cosmetic-dentistry.jpg",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Cosmetic dentistry enhances tooth shape, color, symmetry, and overall smile appearance.",
     symptoms: [
@@ -208,7 +208,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Durable ceramic or porcelain tooth-caps and fixed bridges to restore damaged or missing teeth.",
     fullDescription: "Protect damaged teeth and bridge missing gaps with high-grade ceramic or zirconia crowns crafted to match your natural tooth shade.",
     icon: "layers",
-    image: "/images/services/crowns-bridges.jpg",
+    image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Crowns completely cover a damaged tooth, while bridges replace missing teeth by anchoring to neighbor teeth.",
     symptoms: [
@@ -242,7 +242,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Premium metal-free ceramic & zirconia crowns delivering unmatched natural translucency and strength.",
     fullDescription: "State-of-the-art metal-free ceramic solutions ideal for front and back teeth requiring high aesthetic perfection and biocompatibility.",
     icon: "gem",
-    image: "/images/services/ceramic-crowns.jpg",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
     overview: "All-ceramic crowns incorporate CAD/CAM technology for exact margin fit and life-like shade gradient.",
     symptoms: ["Front tooth damage", "Metal allergy sensitivities", "Discolored old metal crowns"],
     procedure: [
@@ -262,7 +262,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Tooth-colored composite resin fillings that blend seamlessly with natural tooth structure.",
     fullDescription: "Replace silver amalgam fillings or restore new cavities invisibly with composite resin materials matched to your exact tooth shade.",
     icon: "pen-tool",
-    image: "/images/services/cosmetic-filling.jpg",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop",
     overview: "Composite fillings bond directly to the tooth structure, restoring shape, integrity, and aesthetics.",
     symptoms: ["Small to medium tooth decay cavities", "Chipped tooth enamel", "Worn down tooth surfaces"],
     procedure: [
@@ -282,7 +282,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Full mouth digital smile redesign for complete transformation of aesthetic alignment and shade.",
     fullDescription: "A comprehensive smile makeover plans multiple cosmetic procedures to achieve harmony between teeth, gums, lips, and facial profile.",
     icon: "wand2",
-    image: "/images/services/cosmetic-makeovers.jpg",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop",
     overview: "Combines digital smile analysis, gum contouring, whitening, and porcelain work for a dramatic transformation.",
     symptoms: ["Multiple aesthetic concerns", "Severe staining and alignment issues", "Worn down aging smile"],
     procedure: [
@@ -302,7 +302,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Ultra-thin porcelain shells or direct resin bonding to fix chips, gaps, and persistent discoloration.",
     fullDescription: "Veneers are paper-thin porcelain covers crafted to conceal chips, misalignments, gaps, and severe internal stains.",
     icon: "sparkle",
-    image: "/images/services/veneers.jpg",
+    image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1200&auto=format&fit=crop",
     overview: "Provides an instant Hollywood smile by enhancing front surface enamel contours.",
     symptoms: ["Chipped or cracked front teeth", "Stubborn stains resistant to bleaching", "Slightly misaligned front teeth"],
     procedure: [
@@ -322,7 +322,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Eliminate unwanted spaces between teeth using bonding, veneers, or orthodontic aligners.",
     fullDescription: "Close dental diastemas (gaps) quickly and aesthetics-focused through painless composite bonding or custom veneers.",
     icon: "minimize-2",
-    image: "/images/services/gap-closing.jpg",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200&auto=format&fit=crop",
     overview: "Gap closure improves smile symmetry and stops food impaction between teeth.",
     symptoms: ["Noticeable gap between front teeth", "Spacing issues affecting smile harmony"],
     procedure: [
@@ -341,7 +341,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Reliable metal or ceramic braces to correct complex malocclusions and tooth crowding.",
     fullDescription: "Tried-and-tested orthodontic treatment using high-grade brackets to guide teeth into healthy alignment.",
     icon: "grid",
-    image: "/images/services/braces.jpg",
+    image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1200&auto=format&fit=crop",
     overview: "Conventional braces offer precise control over complex tooth root movements.",
     symptoms: ["Severe tooth crowding", "Complex bite misalignment", "Rotated teeth"],
     procedure: [
@@ -361,7 +361,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Add a sparkle to your smile with painless, non-invasive dental crystals and gems.",
     fullDescription: "Express your unique style with genuine Swarovski dental crystals bonded safely onto tooth enamel without drilling.",
     icon: "star",
-    image: "/images/services/teeth-jewellery.jpg",
+    image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1200&auto=format&fit=crop",
     overview: "A painless 15-minute cosmetic procedure attaching gems securely to enamel.",
     symptoms: ["Desire for personalized trendy smile accent"],
     procedure: [
@@ -380,7 +380,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Professional ultrasonic cleaning to remove plaque, tartar, and surface stains.",
     fullDescription: "Thorough ultrasonic scaling removes hardened calculus deposits that regular brushing cannot clean, followed by high-gloss polishing.",
     icon: "droplet",
-    image: "/images/services/scaling.jpg",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Recommended every 6 months to maintain healthy gums and prevent periodontitis.",
     symptoms: ["Bleeding gums when brushing", "Yellow plaque or hard tartar build-up", "Bad breath (Halitosis)"],
@@ -401,7 +401,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Comprehensive correction of bite problems, jaw alignment, and crooked teeth.",
     fullDescription: "Specialized orthodontic solutions to harmonize jaw structure, improve chewing, and deliver long-term aesthetic alignment.",
     icon: "align-center",
-    image: "/images/services/orthodontic.jpg",
+    image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1200&auto=format&fit=crop",
     overview: "Includes aligners, self-ligating braces, and growth modification appliances.",
     symptoms: ["Bite discomfort", "Difficulty chewing", "Jaw pain due to misaligned bite"],
     procedure: [
@@ -420,7 +420,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Premium Biofunctional Prosthetic System (BPS) dentures offering superior fit and chewing comfort.",
     fullDescription: "BPS dentures represent the gold standard in removable prosthetics, engineered for optimal muscle compatibility and natural aesthetics.",
     icon: "smile",
-    image: "/images/services/bps-dentures.jpg",
+    image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=1200&auto=format&fit=crop",
     overview: "Precision-molded dentures that recreate natural chewing dynamics and speech clarity.",
     symptoms: ["Complete or partial loss of teeth", "Poorly fitting conventional dentures"],
     procedure: [
@@ -440,7 +440,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Comprehensive preventive dental examination, oral cancer screening, and digital hygiene report.",
     fullDescription: "Routine dental evaluations spot hidden cavities, gum issues, and oral health warning signs early before they become painful or expensive.",
     icon: "clipboard",
-    image: "/images/services/dental-checkup.jpg",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Includes visual inspection, intraoral camera tour, gum depth measurement, and digital X-ray review.",
     symptoms: ["Routine 6-month checkup", "Mild tooth discomfort", "General preventive care"],
@@ -461,7 +461,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Medical oral hygiene cleaning treatment designed to protect gums and halt early gingivitis.",
     fullDescription: "Prophylaxis goes beyond standard polishing to clean deep between teeth and beneath gum margins, eliminating bacterial bio-film.",
     icon: "shield-check",
-    image: "/images/services/prophylaxis.jpg",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop",
     overview: "An essential preventive treatment for maintaining sound periodontal foundation.",
     symptoms: ["Plaque accumulation", "Slight gum inflammation", "Bad taste in mouth"],
     procedure: [
@@ -480,7 +480,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Ultra-low dose digital Radiovisiography (RVG) X-rays for instant diagnostic clarity.",
     fullDescription: "Our clinic utilizes digital RVG technology reducing radiation exposure by up to 80% while providing instant high-resolution imaging.",
     icon: "scan",
-    image: "/images/services/dental-xray.jpg",
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop",
     overview: "Detects hidden decay between teeth, bone loss, root infections, and impacted wisdom teeth.",
     symptoms: ["Undiagnosed tooth pain", "Trauma assessment", "Pre-root canal evaluation"],
     procedure: [
@@ -499,7 +499,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Thorough diagnostic evaluations for dental emergency pain, trauma, or second opinions.",
     fullDescription: "Dedicated consultation slot for diagnosing complex oral conditions, TMJ issues, and evaluating second opinion treatment plans.",
     icon: "file-search",
-    image: "/images/services/dental-exam.jpg",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
     overview: "Comprehensive examination supported by specialized endodontic diagnostics.",
     symptoms: ["Unexplained facial pain", "Trauma to teeth", "Seeking expert specialist opinion"],
     procedure: [
@@ -518,7 +518,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Reconstruct chipped, worn, or broken teeth to full function with tooth-colored composite and inlay/onlay.",
     fullDescription: "Restorative procedures rebuild damaged tooth enamel using advanced adhesive materials that bond seamlessly.",
     icon: "tool",
-    image: "/images/services/dental-restoration.jpg",
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1200&auto=format&fit=crop",
     overview: "Restores tooth structure lost to trauma, attrition, or severe decay.",
     symptoms: ["Worn down teeth edges", "Large broken fillings", "Fractured tooth corners"],
     procedure: [
@@ -537,7 +537,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Advanced flap surgery, deep curettage, and laser gum therapy to cure periodontitis.",
     fullDescription: "Specialized periodontal therapies to halt gum receding, bone loss, and restore firm foundation for your teeth.",
     icon: "heart-pulse",
-    image: "/images/services/gum-treatment.jpg",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop",
     overview: "Cleans deep gum pockets and regenerates supportive structures damaged by gum disease.",
     symptoms: ["Swollen, red, or bleeding gums", "Receding gum lines making teeth look longer", "Loose or shifting teeth"],
     procedure: [
@@ -557,7 +557,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Targeted treatment to resolve gingivitis and stop gum bleeding while brushing or eating.",
     fullDescription: "Bleeding gums are an early warning sign of gingivitis. Prompt clinical care stops bacterial inflammation before permanent tissue damage occurs.",
     icon: "alert-circle",
-    image: "/images/services/bleeding-gums.jpg",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
     isPopular: true,
     overview: "Painless gingival therapy to eliminate plaque bio-film and soothe inflamed gums.",
     symptoms: ["Blood on toothbrush or dental floss", "Puffy, tender red gums", "Persistent unpleasant breath"],
@@ -578,7 +578,7 @@ export const SERVICES: Service[] = [
     shortDescription: "Complete oral health evaluation, preventive guidance, and custom care planning.",
     fullDescription: "Comprehensive dental consult covering all your family's oral health needs, from preventive care to restorative planning.",
     icon: "user-check",
-    image: "/images/services/dentist.jpg",
+    image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?q=80&w=1200&auto=format&fit=crop",
     overview: "Your primary entry point for all dental questions, checkups, and treatment scheduling.",
     symptoms: ["General dental inquiry", "Routine checkup", "Oral pain evaluation"],
     procedure: [

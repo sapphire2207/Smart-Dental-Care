@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   Activity,
@@ -99,12 +100,20 @@ export default function ServicesPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices.map((service) => (
-              <Card key={service.id} hover className="flex flex-col justify-between group">
-                <div className="space-y-4">
-                  <div className="w-14 h-14 rounded-2xl bg-[#EEF5FF] text-[#4F7DF8] flex items-center justify-center group-hover:bg-[#4F7DF8] group-hover:text-white transition-colors duration-300">
-                    <Activity className="w-7 h-7" />
-                  </div>
+              <Card key={service.id} hover className="flex flex-col justify-between group overflow-hidden p-0 rounded-3xl border border-gray-100">
+                {/* Image Header */}
+                <div className="relative w-full h-48 overflow-hidden bg-gray-100">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                </div>
 
+                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#4F7DF8] bg-[#EEF5FF] px-3 py-1 rounded-full inline-block">
                       {service.category}
@@ -116,16 +125,16 @@ export default function ServicesPage() {
                       {service.shortDescription}
                     </p>
                   </div>
-                </div>
 
-                <div className="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-bold text-[#4F7DF8] hover:text-[#3A62D4] transition-colors group/link"
-                  >
-                    <span>View Treatment Details</span>
-                    <ChevronRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
-                  </Link>
+                  <div className="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-[#4F7DF8] hover:text-[#3A62D4] transition-colors group/link"
+                    >
+                      <span>View Treatment Details</span>
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                    </Link>
+                  </div>
                 </div>
               </Card>
             ))}

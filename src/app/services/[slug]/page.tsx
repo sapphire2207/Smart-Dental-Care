@@ -2,6 +2,7 @@ import React from "react";
 import Metadata from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Activity,
   CheckCircle2,
@@ -55,7 +56,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     <div className="space-y-16 sm:space-y-24 py-6">
       {/* Breadcrumb & Hero */}
       <section className="container-custom">
-        <div className="rounded-[36px] bg-gradient-to-br from-[#EEF5FF] via-[#FAFBFD] to-white p-8 sm:p-12 lg:p-16 border border-gray-100 shadow-sm space-y-6">
+        <div className="rounded-[36px] bg-gradient-to-br from-[#EEF5FF] via-[#FAFBFD] to-white p-8 sm:p-12 lg:p-14 border border-gray-100 shadow-sm space-y-6">
           <Link
             href="/services"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#4F7DF8] hover:text-[#3A62D4] transition-colors"
@@ -64,30 +65,52 @@ export default async function ServiceDetailPage({ params }: Props) {
             <span>Back to All Services</span>
           </Link>
 
-          <div className="space-y-4 max-w-3xl">
-            <span className="px-4 py-1.5 rounded-full bg-white text-[#4F7DF8] text-xs font-bold uppercase tracking-wider border border-[#4F7DF8]/20 inline-block">
-              {service.category}
-            </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Info Column */}
+            <div className="lg:col-span-7 space-y-4">
+              <span className="px-4 py-1.5 rounded-full bg-white text-[#4F7DF8] text-xs font-bold uppercase tracking-wider border border-[#4F7DF8]/20 inline-block">
+                {service.category}
+              </span>
 
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#162554] tracking-tight leading-[1.15]">
-              {service.title}
-            </h1>
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-[#162554] tracking-tight leading-[1.15]">
+                {service.title}
+              </h1>
 
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              {service.fullDescription}
-            </p>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                {service.fullDescription}
+              </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <Button href="/book-appointment" variant="primary" size="lg" icon={<Calendar className="w-5 h-5" />}>
-                Book Consultation for {service.title}
-              </Button>
-              <a
-                href={`tel:${CONTACT.phoneClean}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#162554] font-semibold text-base border border-gray-200 hover:bg-gray-50 transition-colors"
-              >
-                <Phone className="w-5 h-5 text-[#4F7DF8]" />
-                <span>Call {CONTACT.phone}</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-4 pt-4">
+                <Button href="/book-appointment" variant="primary" size="lg" icon={<Calendar className="w-5 h-5" />}>
+                  Book Consultation for {service.title}
+                </Button>
+                <a
+                  href={`tel:${CONTACT.phoneClean}`}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#162554] font-semibold text-base border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+                >
+                  <Phone className="w-5 h-5 text-[#4F7DF8]" />
+                  <span>Call {CONTACT.phone}</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Treatment Specific Image */}
+            <div className="lg:col-span-5 relative flex justify-center">
+              <div className="relative w-full aspect-[4/3] rounded-[28px] overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-tr from-[#162554] to-[#4F7DF8]">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold backdrop-blur-md bg-black/40 px-3.5 py-2 rounded-xl border border-white/20 flex items-center justify-between">
+                  <span className="truncate">Specialized Treatment</span>
+                  <span className="text-[#95CCDD] shrink-0 font-bold ml-2">Smart Dental Care</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
